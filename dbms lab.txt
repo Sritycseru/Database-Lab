@@ -1,0 +1,190 @@
+//Database Create
+CREATE DATABASE database_name;
+
+//database show
+SHOW DATABASES;
+
+//SELECT database   
+
+//Drop Database(database delete)
+DROP DATABASE database_name
+
+//Use Database
+USE DATABASE database_name
+
+
+
+//table create
+CREATE TABLE Student(
+Id int,
+Name varchar(30),
+Dept varchar(20),
+PRIMARY KEY(ID)
+);
+
+//INSERT INTO TABLE
+INSERT INTO student
+VALUES(1,'Ankar','MSE'),
+(2,'Srity','ICE'),(3,'Masum','CSE'),
+(4,'Aminul','EEE'),(5,'Sami','ACCE')
+
+//update values
+UPDATE student SET Dept='ACCE' 
+WHERE Dept='ACC';
+
+//Delete values
+DELETE FROM student WHERE dept='ACC';
+
+
+//To add a column in a table, use ALTER
+ALTER TABLE table_name
+ADD column_name datatype;
+
+
+//To delete a column in a table,use ALTER
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+//To change the data type of a column in a table
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
+
+
+//RENAME OPERATION
+RENAME old_table _name To new_table_name ;  
+
+//Drop table(delete table)
+DROP TABLE Table_name;  
+
+//select operation in table
+SELECT * FROM table_name WHERE Condition(Name='Srity');
+
+DISTINCT CLAUSE R JONNO
+SELECT column_Name FROM table_name;(sobgulo dekhanor jonno)//FROM clause
+SELECT DISTINCT column_Name FROM Table_name;(duplicate value dekhabe na)
+
+
+//Group By OPeration(column sort kore)
+SELECT *FROM table_name GROUP BY column_name;
+
+//GROUP BY SUM
+SELECT column_Name,Sum(Salary)
+FROM table_name GROUP by column_name
+
+//Group by using (sum,avg,Max,MIN,Count)
+GROUP BY Clause : 
+		SELECT column_name,SUM(Column_name),AVG(Column_name),MIN(Column_name),MAX(Column_name),COUNT(Column_name),
+		From table_name
+		GROUP BY column_name 
+SELECT Name,Sum(Salary),AVG(Salary),MAX(Salary),MIN(Salary),COUNT(Salary) FROM groupby GROUP by Name;
+
+
+//Having Clause(that is condition)
+Having Clause : group by + condition
+		SELECT column_name,SUM(Column_name),AVG(Column_name),MIN(Column_name),MAX(Column_name),COUNT(Column_name),
+		From table_name
+		GROUP BY column_name having condition
+SELECT Name,Sum(Salary),AVG(Salary),MAX(Salary),MIN(Salary),COUNT(Salary) FROM groupby GROUP by Name having SUM(Salary)>=1200;
+
+5.(AND,OR,NOT)Operation
+    AND OPERATIOn:SELECT column1, column2, ...
+                  FROM table_name
+                  WHERE condition1 AND condition2 AND condition3 ...;
+
+           SELECT *FROM student1 WHERE (name='Srity') AND (Salary>=12000); 
+  
+  OR OPERATIOn:SELECT column1, column2, ...
+               FROM table_name
+               WHERE condition1 OR condition2 OR condition3 ...;
+           SELECT *FROM student1 WHERE (name='Srity') OR (Salary>=12000)
+  
+  NOT OPERATION:SELECT column1, column2, ...
+                FROM table_name
+                WHERE NOT condition;
+           SELECT *FROM student1 WHERE NOT (name='Srity'); 
+
+    
+
+//lock tables(hieldisql)
+//(phpmyadmin a giye query)
+SELECT * FROM abc;
+LOCK TABLES  abc WRITE;
+UNLOCK TABLES;
+phpmyadmin-2;
+SELECT * FROM abc;
+                            
+
+//lock tables in command line
+mysql -u root -p
+show databases;  //show all database
+use database_name  //change the directory
+select * from table_name;
+lock tables table_name [write/read];
+unlock tables;//eita korle arekta command line e table show korbe.
+
+arekta coomand line a giye
+mysql -u root -p
+use database_name
+show datbases;
+select * from table_name;
+
+Trigger :
+CREATE TRIGGER TRIGGER_NAME
+CREATE TRIGGER triger2 BEFORE UPDATE on table1 FOR EACH ROW
+INSERT INTO table2(A,B,C)
+VALUES(old.A,old.B,old.C);
+
+//Select And Project Operation
+SELECT*FROM student WHERE Teems='A';
+
+
+\\Trigger
+CREATE TRIGGER `practise` BEFORE UPDATE ON `student`
+ FOR EACH ROW INSERT INTO student(ID,Name,Dept)
+     VALUES(old.ID,old.Name,old.Dept)
+
+CREATE TRIGGER practise BEFORE UPDATE ON student FOR EACH ROW 
+INSERT INTO trigger(Id,Name,Dept) VALUES(old.Id,old.Name,old.Dept);
+
+UPDATE student SET 
+Name = 'Dim' WHERE Name='Masum';
+
+Like in sql:
+SELECT * FROM `student1` WHERE "Column_name" LIKE 'condition'
+
+condition : 'a%' -> First letter would be a.
+		'%b' -> Last letter would be b.
+		'_c%'-> Second letter would be c.
+           '%a%' ->find any values that have or in 'a' position
+           'a%o' ->Finds any values that start with "a" and ends with "o" 
+           'a__%'	Finds any values that start with "a" and are at least 3 characters in length
+
+lastlab---
+
+INSERT INTO loan VALUES('A',101), ('B',201),('C',202);
+INSERT INTO account VALUES('B',301), ('C',302),('D',305);
+SELECT * FROM loan UNION SELECT * FROM account;
+
+Join operation
+SELECT * FROM account,loan WHERE Account_no>Loan_number
+SELECT loan.customer_id,account.customer_id FROM account,loan WHERE loan.customer_id<account.customer_id;
+
+SELECT loan.customer_id,account.customer_id FROM loan CROSS JOIN account WHERE loan.customer_id<account.customer_id;
+
+
+UNION STATEMENT
+SELECT supplier_id
+FROM suppliers
+UNION
+SELECT supplier_id
+FROM orders
+ORDER BY supplier_id;
+
+
+
+
+
+
+
+
+
