@@ -1,0 +1,223 @@
+1. Install xampp, create database
+
+2. (Create, Select, show, drop) Database, (Create, alter, rename, drop) on table
+	
+	Create database : CREATE DATABASE database_name
+	Show database   : SHOW DATABASES
+	Drop database   : DROP DATABASE databse_name
+	Use database    : USE database_name
+
+	Create table: 
+	CREATE TABLE table_name(
+		Column_name1 data_type(size),
+		Column_name2 data_type(size),
+		Column_name3 data_type(size),
+		..... 
+	)
+	alter table: -> add, delate or modify column.
+		add : 
+			ALTER TABLE table_name
+			ADD column_name datatype; 
+
+		delate : 
+			ALTER TABLE table_name
+			DROP COLUMN column_name; 
+	     
+		Modify :		
+			ALTER TABLE table_name
+			MODIFY COLUMN column_name datatype; 
+
+	Rename Table: RENAME TABLE Previous_name to new_name
+
+	Drop Table: DROP TABLE table_name
+
+
+3. (Insert, Update, Delete, Select) record, add primary key 
+	Insert records:
+		INSERT INTO students    
+		VALUES    
+		(colum1,colum2,colum3,colum4,....),
+		(colum1,colum2,colum3,colum4,....),
+		..................................;
+
+	Delate a record:
+		DELETE FROM tablename
+		WHERE condition;
+		condition example: columname=value
+
+	Update a cell into table:
+		UPDATE tablename
+		SET columnname = newvalue
+		WHERE columnname;
+		condition example: columnname = previousvalue;
+	
+	Select operation: SLECT * FROM table_name Where conditon
+
+
+4. MySQL(where clause, Distinct clause, from clause, Group By, Having clause) 
+	Distinct clause : SELECT DISTINCT Column_name FROM Table_name;
+	Group By : 
+		SELECT column_name,SUM(Column_name),AVG(Column_name),MIN(Column_name),MAX(Column_name),COUNT(Column_name),
+		From table_name
+		GROUP BY column_name
+	
+	Having Clause : group by + condition
+		SELECT column_name,SUM(Column_name),AVG(Column_name),MIN(Column_name),MAX(Column_name),COUNT(Column_name),
+		From table_name
+		GROUP BY column_name having condition
+		
+
+5. (AND, OR, LIKE, NOT) Condition  
+	AND : 
+		SELECT column1, column2, ...
+		FROM table_name
+		WHERE condition1 AND condition2 AND condition3 ...;
+	
+	OR :
+		SELECT column1, column2, ...
+		FROM table_name
+		WHERE condition1 OR condition2 OR condition3 ...;
+
+	NOT : 
+		SELECT column1, column2, ...
+		FROM table_name
+		WHERE NOT condition
+
+	Like :
+		SELECT * FROM student1 WHERE "Column_name" LIKE 'condition'
+
+		condition : 
+			'a%' -> First letter would be a.
+			'%b' -> Last letter would be b.
+			'_c%'-> Second letter would be c.
+			'%a%'-> any position contain a.
+			'a%o'-> Finds any values that start with "a" and ends with "o".
+			'a__%'->Finds any values that start with "a" and are at least 3 characters in length
+			'a%o'->Finds any values that start with "a" and ends with "o"
+
+
+6. Join operation(Cross, self) two tables (Find the maximum, minimum value), Union
+   All columns cross join:
+     *Specific Column:
+                 SELECT column_name.table_1name,column_name.table_2name;
+                 FROM table_1name
+                 CROSS JOIN table_2name;
+   
+  Full table Join:
+                 SELECT *
+                 FROM table_1name
+                 CROSS JOIN table_2name;
+  
+  condition deya thakle:
+     Natural Join:
+                 SELECT *
+                 FROM borrower
+                 CROSS JOIN loan
+                 WHERE loan.Loan_Number=borrower.Loan_Number;
+  SeLf Join:
+       
+          SELECT b1.Customer_name 
+          FROM table-1name AS b1 
+          CROSS JOIN table_1name AS b2; 
+
+  Sobgulo dekhar jonno:       
+          SELECT *
+          FROM table-1name AS b1 
+          CROSS JOIN table_1name AS b2; 
+   
+  Left Outer join:
+        SELECT *
+        FROM table_1name
+        LEFT JOIN table_2name
+        ON table_1name.column_name(primary key) = table_2name.column_name(primary key;
+       
+
+        SELECT *
+        FROM borrower
+        LEFT JOIN relationloan
+        ON borrower.Loan_number = relationloan.Loan_number;
+
+  Right Outer Join: 
+        SELECT *
+        FROM borrower
+        RIGHT JOIN loan
+        ON borrower.Loan_number = loan.Loan_number;
+
+   FUll Outer Join:
+        SELECT *
+        FROM borrower
+        FULL JOIN loan
+        ON borrower.Loan_number = loan.Loan_number;     
+
+
+
+
+
+
+
+7. Aggregate Function(sum, avg, min,max)
+
+8. Triggers Operations ( Create, show, drop, Before, After)  
+   
+   Trigger :
+          
+          CREATE TRIGGER triger2
+          BEFORE UPDATE on table1 FOR EACH ROW
+          INSERT INTO table2(A,B,C)
+          VALUES(old.A,old.B,old.C);
+
+        CREATE TRIGGER triger
+        BEFORE UPDATE on table1 FOR EACH ROW
+        INSERT INTO table2(A,B,C)
+        VALUES(old.A,old.B,old.C);
+       
+
+       CREATE TRIGGER triger
+       BEFORE UPDATE on borrower FOR EACH ROW
+       INSERT INTO relation(A,B)
+       VALUES(old.Customer_name,old.Loan_Number);
+
+Update a cell into table:
+	UPDATE tablename
+	SET columnname = newvalue
+	WHERE condition;
+	condition example: columnname = previousvalue;
+
+
+     UPDATE borrower
+     SET Customer_name ='Suvas',Loan_number='L-115'
+     WHERE Customer_name = 'Srity'
+
+Extend feature :
+	     Removing null row: 
+		DELETE FROM table_name WHERE column_name1 IS NULL AND column_name2 IS null
+
+9.  Create user & grant privileges, Authentication  (won’t be in final exam)
+
+10. Table locking, unlocking (won’t be in final exam)
+
+Aggregate Function:
+                SELECT COUNT(amount)
+                FROM loan
+              
+                SELECT SUM(amount)
+                FROM loan
+
+                SELECT AVG(amount)
+                FROM loan
+                WHERE(amount>4000);
+               
+                SELECT MAX(amount)
+                FROM loan
+                WHERE(amount>4000); 
+                 
+                SSELECT MIN(amount)
+                FROM loan
+                WHERE(amount>4000); 
+
+ 
+
+
+
+
+
